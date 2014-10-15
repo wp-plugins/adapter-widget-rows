@@ -8,7 +8,7 @@ Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Drag and drop widgets on your full screen. They'll fit into horizontal rows, and re-size on mobile devices. Build an entire page of widgets, with up to 6 rows.
+Drag and drop widgets on your full screen. They'll fit into horizontal rows, and re-size on mobile devices. Create up to 6 rows.
 
 == Description ==
 
