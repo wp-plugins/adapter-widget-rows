@@ -3,22 +3,27 @@ Contributors: ryankienstra
 Donate link: http://jdrf.org/get-involved/ways-to-donate/
 Tags: widgets, Bootstrap, mobile, responsive, sidebars
 Requires at least: 4.0
-Tested up to: 4.0 
+Tested up to: 4.1
 Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Drag and drop widgets into horizontal rows. Looks good on any screen.
+Drag and drop widgets on your full screen. They'll fit into horizontal rows, and re-size on mobile devices. Create up to 6 rows.
 
 == Description ==
 
 * Must have Twitter Bootstrap 3 and Glyphicons.
-* Drag and drop 1-6 widgets in each horizontal row.
+* Drag and drop 1-4 widgets in each horizontal row.
 * Easy: each widget has a button to edit, add, delete.
 * Build an entire page with widgets.
 * Approve changes before publishing them.
 * Works with themes "evolve," "Unite," and "DevDmBootstrap3."
 * Works with "Openstrap," but icons are unclear.
+
+[youtube https://www.youtube.com/watch?v=xIAAr8MLpJ0]
+
+Setup:
+[youtube https://www.youtube.com/watch?v=OeSU8EMSgDY]
 
 == Installation ==
 
@@ -43,9 +48,9 @@ No, only administrators, or those with 'manage_options' capabilities. But you ca
 = I don't need all 6 of the rows on the page. What can I do? =
 
 You and other administrators are the only ones who will see empty rows. Still, you can change the number of rows on a page by entering this in your functions.php file:
-  `add_filter( 'awr_amount_of_sidebars_on_page' , 'my_awr_sidebar_count' ) ;
+  `add_filter( 'awr_amount_of_sidebars_on_page' , 'my_awr_sidebar_count' );
   function my_awr_sidebar_count( $count ) {
-    return 3 ; // or your number
+    return 3; // or your number
   }`
 
 = I accidentally deleted my page "Widget Rows" page in the settings page. How do I get it back? =
