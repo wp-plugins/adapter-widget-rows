@@ -3,7 +3,7 @@ Contributors: ryankienstra
 Donate link: http://jdrf.org/get-involved/ways-to-donate/
 Tags: widgets, Bootstrap, mobile, responsive, sidebars
 Requires at least: 4.0
-Tested up to: 4.1
+Tested up to: 4.2.2
 Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
