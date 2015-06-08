@@ -3,71 +3,93 @@
 
 		// Link to delete page
 		$( '.awr-delete-page' ).live( 'click' , function() {
-			var data_awr_target = $( this ).attr( 'data-awr-target' );
-			if ( ! data_awr_target ) {
-				data_awr_target = $( this ).data( 'awr-target' );
+			var pageToDelete ,
+			    dataAwrTarget = $( this ).attr( 'data-awr-target' );
+
+			if ( ! dataAwrTarget ) {
+				dataAwrTarget = $( this ).data( 'awr-target' );
 			}
-			page_to_delete = $( '#' + data_awr_target );
-			page_to_delete.css( 'display' , 'none' )
-				.val( '' );
+			pageToDelete = $( '#' + dataAwrTarget );
+			pageToDelete.css( 'display' , 'none' )
+				    .val( '' );
 			$( this ).css( 'display' , 'none' );
+
 			return false;
 		} );
 
 		// Link to create new page
 		$( '.awr-new-page' ).on( 'click' , function() {
-			var $awr_pages = $( '.awr-page-input' ) ,
-			$last_page_input = $awr_pages.last() ,
-			$element_before_new_button = get_element_before_new_button() ,
-			new_page_number = get_new_page_number() ,
-			new_page_input_id = 'awr-page-' + new_page_number ,
-			$new_page_input = get_new_page_input() ,
-			$new_page_delete_button = get_new_page_delete_button() ,
-			$break_tags = $( '</br></br>' );
+			var setElementBeforeNewButton , setNewPageNumber ,
+			    setIdNewPageInput , setNewPageInput , setNewPageDeleteButton ,
+			    $elementBeforeNewButton , newPageNumber , idNewPageInput ,
+			    $newPageInput , $newPageDeleteButton , createNewPageFields ,
+			    insertFieldsIntoPage ,
+			    $awrPages = $( '.awr-page-input' ) ,
+			    $lastPageInput = $awrPages.last() ,
+			    $breakTags = $( '</br></br>' );
 
-			[ $new_page_delete_button , $new_page_input , $break_tags	].map( function( element , index ) {
-				element.insertAfter( $element_before_new_button );
-			} );
-
-			function get_element_before_new_button() {
-				if ( $last_page_input.length === 0 ) {
-					return $( '.awr-options-form .form-table td' );
+			setElementBeforeNewButton = function() {
+				if ( $lastPageInput.length === 0 ) {
+					$elementBeforeNewButton = $( '.awr-options-form .form-table td' );
 				}
 				else {
-					return $last_page_input.next();
+					$elementBeforeNewButton = $lastPageInput.next();
 				}
-			}
+			};
 
-			function get_new_page_number() {
-				if ( $last_page_input.length === 0 ) {
-					return 1;
-				}
-				else {
-					var last_page_id = $last_page_input.attr( 'id' );
-					var last_page_number = Number( last_page_id.match( /awr-page-([\d]*)/ )[ 1 ] );
-					return last_page_number + 1;
-				}
-			}
+			setNewPageNumber = function() {
+				var lastPageId , lastPageNumber ;
 
-			function get_new_page_input() {
-				return $( '<input>' ).attr( {
-					type	: 'text' ,
-					id		: new_page_input_id ,
+				if ( $lastPageInput.length === 0 ) {
+					newPageNumber = 1;
+				} else {
+					lastPageId = $lastPageInput.attr( 'id' );
+					lastPageNumber = Number( lastPageId.match( /awr-page-([\d]*)/ )[ 1 ] );
+					newPageNumber = lastPageNumber + 1;
+				}
+			};
+
+			setIdNewPageInput = function() {
+				idNewPageInput = 'awr-page-' + newPageNumber;
+			};
+
+			setNewPageInput = function() {
+				$newPageInput = $( '<input>' ).attr( {
+					type  : 'text' ,
+					id    : idNewPageInput ,
 					class : 'awr-page-input' ,
 					value : '' ,
-					name : 'map_awr_index_to_page_title[' + new_page_number + ']'
+					name  : 'map_awr_index_to_page_title[' + newPageNumber + ']'
 				} );
-			}
+			};
 
-			function get_new_page_delete_button() {
-				return $( '<a>' )
+			setNewPageDeleteButton = function() {
+				$newPageDeleteButton = $( '<a>' )
 					.attr( {
-						href : '#' ,
+						href  : '#' ,
 						class : 'button-secondary awr-delete-page' ,
-					} )
-					.data( 'awr-target' , new_page_input_id )
+					       }
+					     )
+					.data( 'awr-target' , idNewPageInput )
 					.html( 'Delete' );
-			}
+			};
+
+			createNewPageFields = function() {
+				setElementBeforeNewButton();
+				setNewPageNumber();
+				setIdNewPageInput();
+				setNewPageInput();
+				setNewPageDeleteButton();
+			};
+
+			insertFieldsIntoPage = function() {
+				[ $newPageDeleteButton , $newPageInput , $breakTags ].map( function( element , index ) {
+				element.insertAfter( $elementBeforeNewButton );
+				} );
+			};
+
+			createNewPageFields();
+			insertFieldsIntoPage();
 
 			return false;
 
